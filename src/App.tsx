@@ -31,9 +31,7 @@ function App() {
         <button onClick={handleClickDecremented}>
           -
         </button>
-
         {count}
-        
         <button onClick={handleClickIncrement}>
           +
         </button>
