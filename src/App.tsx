@@ -1,9 +1,20 @@
 import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from './redux-toolkit/store/hooks';
+import { incremented, decremented } from './redux-toolkit/slices/counterSlice';
 import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const count = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
+
+  const handleClickDecremented = () => {
+    dispatch(decremented());
+  }
+
+  const handleClickIncrement = () => {
+    dispatch(incremented());
+  }
 
   return (
     <div className="App">
@@ -17,8 +28,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={handleClickDecremented}>
+          -
+        </button>
+
+        {count}
+        
+        <button onClick={handleClickIncrement}>
+          +
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
